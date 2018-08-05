@@ -24,12 +24,14 @@ for k = 1 : n_files
     find_chessboard2(files1(k), out_folder);
 end
 
-%% Step 3: transforms chessboards (normalizing): WIP
+%% Step 3: transforms chessboards (normalizing): 45/46 (39 has 5 corners)
 in_folder = 'step2/';
 files = dir(fullfile(in_folder, '*.png'));
 n_files = length(files);
 out_folder = 'step3';
+subfolder = '/corners';
 mkdir(out_folder);
+mkdir(strcat(out_folder, subfolder));
 for k = 1 : n_files
     normalize(files(k), out_folder);
 end
