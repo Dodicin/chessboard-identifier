@@ -1,4 +1,4 @@
-function find_chessboard(file)
+function find_chessboard(file, out_folder)
     fileName = file.name;
     fileName = replace(file(1).name, '.jpg', '.png');
     filePath = strcat(file.folder, '\', file.name);
@@ -26,7 +26,7 @@ function find_chessboard(file)
     Imasked( all(~Imasked,2), : ) = [];
     Imasked( :, all(~Imasked,1) ) = [];
     Imasked = padarray(Imasked, [2 2]);
-    imwrite(Imasked, strcat('./test1/', fileName));
+    imwrite(Imasked, strcat(out_folder, '/', fileName));
     
 %     figure, imshow(BW);
 %     stat = regionprops(Ifinal,'boundingbox');

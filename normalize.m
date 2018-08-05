@@ -1,4 +1,4 @@
-function normalize(file)
+function normalize(file, out_folder)
     %file = files(11);
     fileName = file.name;
     filePath = strcat(file.folder, '\', file.name);
@@ -47,12 +47,12 @@ function normalize(file)
     plot(theta, rho, '.'), hold on
     plot(theta(corners), rho(corners), 'ro'), hold off
     xlim([-pi pi]), title('Boundary Signature'), xlabel('\theta'), ylabel('\rho');
-    saveas(f1, strcat('./test3-norm1/', fileName));
+    saveas(f1, strcat(out_folder, '/',fileName));
 
     %# plot image + corners
     f2 = figure; set(gcf,'Visible', 'off'); 
     imshow(BW), hold on
     plot(B(corners,2), B(corners,1), 's', 'MarkerSize',10, 'MarkerFaceColor','r')
     hold off, title('Corners');
-    saveas(f2, strcat('./test3-norm1/', strcat(fileName, 'a.jpg')));
+    saveas(f2, strcat(out_folder, '/', strcat(fileName, '-plot.png')));
 end

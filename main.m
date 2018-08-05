@@ -5,30 +5,31 @@ dp = 'schemi/foto/';
 d1 = 'test1';
 
 %% Step 1: finds chessboards in the set: 46/48
-dp = 'schemi/foto/';
-files = dir(fullfile(dp, '*.jpg'));
-numFiles = length(files);
-mkdir('./test1');
-for k = 1 : numFiles
-    find_chessboard(files(k));
+in_folder = 'foto/';
+files = dir(fullfile(in_folder, '*.jpg'));
+n_files = length(files);
+out_folder = 'step1';
+mkdir(out_folder);
+for k = 1 : n_files
+    find_chessboard(files(k), out_folder);
 end
 
 %% Step 2: finds inner square for every image from Step 1: 46/46
-d1 = 'test1/';
-files1 = dir(fullfile(d1, '*.png'));
-numFiles = length(files1);
-mkdir('./test2');
-for k = 1 : numFiles
-    find_chessboard2(files1(k));
+in_folder = 'step1/';
+files1 = dir(fullfile(in_folder, '*.png'));
+n_files = length(files1);
+out_folder = 'step2';
+mkdir(out_folder);
+for k = 1 : n_files
+    find_chessboard2(files1(k), out_folder);
 end
 
 %% Step 3: transforms chessboards (normalizing): WIP
-d2 = 'test2/';
-files = dir(fullfile(d2, '*.png'));
-numFiles = length(files);
-mkdir('./test3-norm1');
-mkdir('./test3-norm2');
-mkdir('./test3-norm3');
-for k = 1 : numFiles
-    normalize(files(k));
+in_folder = 'step2/';
+files = dir(fullfile(in_folder, '*.png'));
+n_files = length(files);
+out_folder = 'step3';
+mkdir(out_folder);
+for k = 1 : n_files
+    normalize(files(k), out_folder);
 end
