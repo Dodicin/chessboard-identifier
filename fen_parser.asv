@@ -1,0 +1,43 @@
+%function fen_parser(x, y, fileName)
+    x = 1;
+    y = 1;
+    fileName = str2double('30');
+    
+    import_imagescsv;
+    import_labelscsv;
+    
+    puzzle = images.Puzzle(fileName);
+    index = find(ismember(labels.Puzzle, puzzle));
+    fen_string = labels.BoardConfiguration(index);
+    
+    rows = strsplit(fen_string, '/');
+    tmp = strsplit(rows(8));
+    rows(8) = tmp(1);
+
+    chessboard = cell(8);
+    
+    for i = 1:numel(rows)
+        curr_row = char(rows(i));
+        for j = 1:numel(curr_row)
+            if isstrprop(curr_row(j), 'digit')
+                for k = 1:str2double(curr_row(j))
+                    if rem(i, 2) == 0
+                        if rem(j, 2) == 0
+                            chessboard{i, } = 0;
+                        else
+                            chessboard{i, j} = 1;
+                        end
+                    else
+                        if rem(j, 2) == 0
+                            chessboard{i, j} = 1;
+                        else
+                            chessboard{i, j} = 0;
+                        end
+                    end
+                end
+            else
+                chessboard{i, j} = curr_row(j);
+            end
+        end
+    end
+%end

@@ -22,8 +22,8 @@ function splitter(file, out_folder)
             countj = countj + 1;
             block = image(i:i+7,j:j+7);
             block_role = fen_parser(counti, countj, fileName);
-            
-            imwrite(block, [out_folder '/' fileName '-' block_role '-' num2str(counti) '-' num2str(countj) '.png']);
+            disp(block_role);
+            imwrite(block, [out_folder '/' fileName '-' 0 '.png']);
        end
    end
    

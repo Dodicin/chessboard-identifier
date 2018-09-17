@@ -19,7 +19,7 @@ in_folder = 'step1';
 files1 = dir(fullfile(in_folder, '*.png'));
 n_files = length(files1);
 out_folder = 'step2';
-mkdir(out_folder);z
+mkdir(out_folder);
 for k = 1 : n_files
     find_chessboard2(files1(k), out_folder);
 end
