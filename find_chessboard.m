@@ -1,7 +1,7 @@
 function find_chessboard(file, out_folder)
     fileName = file.name;
     fileName = replace(file(1).name, '.jpg', '.png');
-    filePath = strcat(file.folder, '\', file.name);
+    filePath = strcat(file.folder, '/', file.name);
     image = im2double(imread(filePath));
     if size(image,3)==3
         image = rgb2gray(image);

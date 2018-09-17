@@ -1,6 +1,6 @@
 function find_chessboard2(file, out_folder)
     fileName = file.name;
-    filePath = strcat(file.folder, '\', file.name);
+    filePath = strcat(file.folder, '/', file.name);
     image = im2double(imread(filePath));
     if size(image,3)==3
         image = rgb2gray(image);
@@ -35,5 +35,4 @@ function find_chessboard2(file, out_folder)
     Imasked( :, all(~Imasked,1) ) = [];
     Imasked = padarray(Imasked, [50 50]);
     imwrite(Imasked, strcat(out_folder, '/', fileName));
-    
 end

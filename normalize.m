@@ -1,7 +1,7 @@
 function normalize(file, out_folder)
     %file = files(1);
     fileName = file.name;
-    filePath = strcat(file.folder, '\', file.name);
+    filePath = strcat(file.folder, '/', file.name);
     image = im2double(imread(filePath));
     if size(image,3)==3
         image = rgb2gray(image);
