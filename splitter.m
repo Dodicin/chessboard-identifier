@@ -1,5 +1,6 @@
-function splitter(file, out_folder)
-    %file = files(1);
+function out = splitter(file, out_folder)
+
+    labelize = false;
 
     fileName = strsplit(file.name, '.');
     fileName = fileName{1};
@@ -8,23 +9,29 @@ function splitter(file, out_folder)
     if size(image,3)==3
         image = rgb2gray(image);
     end
-    
-   image = imresize(image, [64 64]);
-   
-   [m,n] = size(image);
-   counti = 0;
-   
-   for i = 1:8:m-7
-       
-       counti = counti + 1;
-       countj = 0;
-       for j = 1:8:n-7
+
+    [m, n] = size(image);
+    counti = 0;
+    block_role_arr = [];
+
+    for i = 1:70:m-69
+
+    counti = counti + 1;
+    countj = 0;
+        for j = 1:70:n-69
             countj = countj + 1;
-            block = image(i:i+7,j:j+7);
-            block_role = fen_parser(counti, countj, fileName);
+            block = image(i:i+69,j:j+69);
+            if(labelize)
+                block_role = fen_parser(counti, countj, fileName);
+                block_role_arr = [block_role_arr; block_role];
+                imwrite(block, [out_folder '/' fileName '-' num2str(counti) '-' num2str(countj) '-' block_role '.png']);
+            else
+                imwrite(block, [out_folder '/' fileName '-' num2str(counti) '-' num2str(countj) '.png']);
+            end
             
-            imwrite(block, [out_folder '/' fileName '-' block_role '-' num2str(counti) '-' num2str(countj) '.png']);
-       end
-   end
+        end
+    end
+
+    out = block_role_arr;
    
 end

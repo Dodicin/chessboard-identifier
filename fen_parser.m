@@ -21,15 +21,16 @@ function out=fen_parser(x, y, fileName)
             
             if isstrprop(curr_row(j), 'digit')
                 for k = 1:str2double(curr_row(j))
+                    % Can distinguish between black and white empty cells
                     if rem(i, 2) == 0
                         if rem(j_r, 2) == 0
                             chessboard{i, j_r} = '0';
                         else
-                            chessboard{i, j_r} = '1';
+                            chessboard{i, j_r} = '0'; %1
                         end
                     else
                         if rem(j_r, 2) == 0
-                            chessboard{i, j_r} = '1';
+                            chessboard{i, j_r} = '0'; %1
                         else
                             chessboard{i, j_r} = '0';
                         end

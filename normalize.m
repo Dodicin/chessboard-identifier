@@ -1,4 +1,5 @@
-function normalize(file, out_folder)
+function out = normalize(file, out_folder)
+
     %file = files(1);
     fileName = file.name;
     filePath = strcat(file.folder, '/', file.name);
@@ -11,7 +12,7 @@ function normalize(file, out_folder)
     BW = image;
     B = bwboundaries(BW, 8, 'noholes');
     B = B{1};
-
+    
     %%# boudary signature
     %# convert boundary from cartesian to polar coordinates
     objB = bsxfun(@minus, B, mean(B));
@@ -96,7 +97,12 @@ function normalize(file, out_folder)
         xf1(:, c-10:c) = [];
         xf1(1:10, :) = [];
         xf1(:, 1:10) = [];
-        imwrite(xf1, strcat(out_folder, '/', fileName));
+        
+        im = imresize(xf1, [560 560]);
+        im = imadjust(im);
+        im = adapthisteq(im, 'NumTiles', [8 8], 'NBins', 128);
+        out =  [out_folder '/' fileName];
+        imwrite(im, out);
     catch ME
     end
     
