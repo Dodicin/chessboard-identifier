@@ -1,5 +1,5 @@
 
-folder = fullfile('photo');
+folder = fullfile('data/photo');
 [name, user_canceled] = imgetfile('InitialPath', folder);
 [folder, name, ext] = fileparts(name);
 name = [name ext];

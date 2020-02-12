@@ -2,7 +2,7 @@ close all;
 clear;
 
 %% Step 1: finds chessboards in the set: 46/48
-in_folder = 'photo';
+in_folder = './data/photo';
 files = dir(fullfile(in_folder, '*.jpg'));
 n_files = length(files);
 out_folder = 'step1';
@@ -16,7 +16,7 @@ end
 in_folder = 'step1';
 files1 = dir(fullfile(in_folder, '*.png'));
 n_files = length(files1);
-out_folder = 'presentation';
+out_folder = 'step2';
 mkdir(out_folder);
 for k = 1 : n_files
     find_chessboard2(files1(k), out_folder);
@@ -35,7 +35,6 @@ for k = 1 : n_files
 end
 
 %% Step 4: creating the dataset
-
 in_folder = 'step3_working';
 files = dir(fullfile(in_folder, '*.png'));
 n_files = length(files);
@@ -51,7 +50,6 @@ cell_labels = num2cell(cell_labels);
 save('cell_labels', 'cell_labels');
 
 %% Step 5: training the classifier
-
 create_descriptor_files();
 % return;
 load('features/lbp');

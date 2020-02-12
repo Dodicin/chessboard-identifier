@@ -1,8 +1,7 @@
 %function create_descriptor_files()
   % Calcola i descrittori delle immagini e li salva su file.
 
-  import_imagescsv;
-  import_labelscsv;
+  import_data;
   
   in_folder = 'step4';
   files = dir(fullfile(in_folder, '*.png'));
